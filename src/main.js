@@ -51,16 +51,21 @@ async function fetchImages(nameImage) {
       });
     }
   } catch (error) {
-    console.error('Error:', error);
+    console.error('Error fetching images:', error);
+    iziToast.error({
+      message: 'Failed to fetch images. Please try again later.',
+      position: 'topRight',
+    });
   } finally {
     loader.style.display = 'none';
   }
 }
 
+
 function renderTicker(data) {
   const markup = data.hits.map(templateImage).join('');
   gallery.innerHTML = markup;
-  
+
   const lightbox = new SimpleLightbox('.gallery a', {
     captionsData: 'alt',
     captionDelay: 250,
