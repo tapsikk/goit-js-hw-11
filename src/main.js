@@ -20,9 +20,7 @@ function onCreateFormSubmit(event) {
       position: 'topRight',
     });
   }
-
   loader.style.display = 'inline-block';
-
   fetchImages(nameImage);
   event.target.reset();
 }
@@ -62,12 +60,7 @@ async function fetchImages(nameImage) {
 function renderTicker(data) {
   const markup = data.hits.map(templateImage).join('');
   gallery.innerHTML = markup;
-
-  const galleryLinks = document.querySelectorAll('.gallery-link');
-  galleryLinks.forEach(link => {
-    link.setAttribute('href', link.querySelector('img').getAttribute('src'));
-  });
-
+  
   const lightbox = new SimpleLightbox('.gallery a', {
     captionsData: 'alt',
     captionDelay: 250,
